@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Lens | Mini Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Text Lens</h1>
+            <p class="stats">The mini search engine powered by TF-IDF & Vector Embeddings</p>
+        </header>
+
+        <main>
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="Search across documents..." autocomplete="off">
+            </div>
+
+            <div class="search-mode-selector">
+                <button id="mode-keyword-btn" class="mode-btn active">Keyword Search</button>
+                <button id="mode-semantic-btn" class="mode-btn">Semantic (AI) Search</button>
+            </div>
+
+            <div class="actions">
+                <div id="result-count" class="stats"></div>
+                <div>
+                    <button id="toggle-panel-btn" class="secondary">Add New Document</button>
+                    <button id="seed-btn" class="secondary">Index Sample Data</button>
+                </div>
+            </div>
+
+            <div id="entry-panel" class="entry-panel hidden">
+                <div class="panel-section">
+                    <h3>Manual Entry</h3>
+                    <div class="form-group">
+                        <input type="text" id="doc-id-input" placeholder="ID (e.g., DOC_001)">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="doc-text-input" placeholder="Enter document content here..."></textarea>
+                    </div>
+                    <button id="add-doc-btn">Index Document</button>
+                </div>
+
+                <div class="panel-divider"></div>
+
+                <div class="panel-section">
+                    <h3>Local System Scan (.txt, .pdf, .docx)</h3>
+                    <div class="form-group">
+                        <input type="text" id="dir-path-input" placeholder="Enter absolute folder path (e.g., C:\Notes)">
+                    </div>
+                    <button id="scan-dir-btn" class="secondary">Scan & Index Folder</button>
+                </div>
+
+                <div class="panel-divider"></div>
+
+                <div class="panel-section">
+                    <h3>File Upload (.txt, .pdf, .docx)</h3>
+                    <div class="form-group">
+                        <div id="drop-zone" class="drop-zone">
+                            <span class="drop-zone-text">Drag & drop files here or click to browse</span>
+                            <input type="file" id="file-upload-input" multiple accept=".txt,.pdf,.docx,.md">
+                        </div>
+                    </div>
+                    <div id="selected-files-list" class="selected-files-list"></div>
+                    <button id="upload-files-btn" class="secondary" disabled>Index Uploaded Files</button>
+                </div>
+            </div>
+
+            <ul id="results-list">
+                <div class="empty-state">
+                    Start typing to see results instanty...
+                </div>
+            </ul>
+        </main>
+    </div>
+
+    <div id="toast">Data successfully indexed!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
